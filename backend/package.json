@@ -11,10 +11,10 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "jade": "~1.11.0",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "mongoose": "^4.10.6",
+    "mongoose": "^4.11.0",
     "mongoose-auto-increment": "^5.0.1",
-    "mongoose-relationship": "^0.1.5"
+    "mongoose-relationship": "^0.1.5",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   }
 }
