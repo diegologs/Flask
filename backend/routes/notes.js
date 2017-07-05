@@ -9,7 +9,7 @@ router.post('/', function (req, res, next) {
         title: req.body.title,
         tags: req.body.tags,
         text: req.body.text
-        
+
 
     }, function (err, note) {
         if (err)
@@ -46,10 +46,20 @@ router.delete('/:note_id', function (req, res, next) {
         if (err)
             res.send(err);
 
+        Note.resetCount(function (err, nextCount) {
+
+            // nextCount === 100 -> true 
+
+        });
         Note.find(function (err, notes) {
             if (err)
                 res.send(err)
             res.json(notes);
+            Note.resetCount(function (err, nextCount) {
+
+                // nextCount === 100 -> true 
+
+            });
         });
     });
 
