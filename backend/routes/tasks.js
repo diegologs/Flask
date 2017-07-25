@@ -62,7 +62,7 @@ router.delete('/:task_id', function (req, res, next) {
 
 });
 
-
+//Método para marcar una tarea como completada
 router.put('/:task_id/completed', function (req, res, next) {
 
     Task.update({
