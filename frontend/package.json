@@ -7,10 +7,18 @@
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10"
   },
+
+  "homepage": "https://frostqui.github.io/flask",
+
   "scripts": {
-    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+
+    "proxy": "http://localhost:3000"
+  
 }
