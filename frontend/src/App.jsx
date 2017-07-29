@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import FaFlask from 'react-icons/lib/fa/flask'
 
 class App extends Component {
-  state = {tasks: []}
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    fetch('/tasks')
-      .then(res => res.json())
-      .then(tasks => this.setState({ tasks }));
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
   }
-
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <div className="App">
-        <ul>
-        <h1>Tasks</h1>
-        {this.state.tasks.map(task =>
-          <li>{task.text}</li>
-        )}
-        </ul>
+      <div>
+        
+        <Navbar color="faded" light toggleable>
+          <NavbarToggler right onClick={this.toggle} />
+          <NavbarBrand href="/">Flask <FaFlask/></NavbarBrand>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/notes/">Notas</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/tasks/">Tareas</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/calendar">Calendario</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
   }
