@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.draggable {
+  background-color: rgba(0,0,0,0.2);
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  cursor: col-resize;
+ 
+}
+
+
+.side-bar {
+  float: left;
+  position: relative;
+}
+
+.bar-content {
+  width: calc(100% - 10px);
+}
