@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { HashRouter, Route } from 'react-router-dom';
 
-import CustomNavbar from './Navbar.jsx';
-import CustomSidebar from './Sidebar.jsx';
+import CustomNavbar from './components/Navbar.jsx';
+import CustomSidebar from './components/Sidebar.jsx';
+import About from './About.jsx';
 
 
 
@@ -22,7 +24,8 @@ class App extends Component {
       <div className="App">
        
        <CustomNavbar></CustomNavbar>
-       <CustomSidebar></CustomSidebar>
+       <CustomSidebar items = {this.state.tasks} />
+       <Route exact path="/about" component={About} />
         <ul>
         <h1>Tasks</h1>
         {this.state.tasks.map(task =>

@@ -6,6 +6,10 @@ import FaFlask from 'react-icons/lib/fa/flask'
 
 
 
+import { Link } from 'react-router-dom'
+
+
+
 
 class CustomNavbar extends Component {
   constructor(props) {
@@ -31,7 +35,7 @@ class CustomNavbar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/notes/">Notas</NavLink>
+                <NavLink><Link to="/about">About</Link></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/tasks/">Tareas</NavLink>

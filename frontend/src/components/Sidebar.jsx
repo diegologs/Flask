@@ -17,7 +17,13 @@ class CustomSidebar extends Component {
     render() {
         return (
             <div className='side-bar' style={{ width: this.state.width }}>
-                <div className='bar-content'>Hola</div>
+                <div className='bar-content'>
+
+                    {this.props.items.map((item, index) => (
+                        <li className='task' key={index}>{item.title}</li>
+                    ))}
+
+                </div>
                 <div className='draggable' onMouseDown={this.onMouseDown.bind(this)}></div>
             </div>
         );

@@ -19,6 +19,7 @@ body {
 .side-bar {
   float: left;
   position: relative;
+  height: 800px;
 }
 
 .bar-content {
