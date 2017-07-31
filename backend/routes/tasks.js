@@ -37,6 +37,17 @@ router.get('/', function (req, res, next) {
 
 });
 
+//Método get para listar una de las tareas
+router.get('/:task_id', function (req, res, next) {
+    Task.findOne({
+       _id: req.params.task_id
+    }, function (err, obj) {
+        res.json(obj);
+    });
+
+});
+
+
 
 //Método delete para eliminar una tarea mediante su id
 router.delete('/:task_id', function (req, res, next) {

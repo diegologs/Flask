@@ -5,15 +5,17 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import CustomNavbar from './components/Navbar.jsx';
 import CustomSidebar from './components/Sidebar.jsx';
-import About from './About.jsx';
+import Task from './components/Task.jsx';
+
+import { Container, Row, Col } from 'reactstrap';
 
 
 
 
 class App extends Component {
-  state = {tasks: []}
+  state = { tasks: [] }
 
-    componentDidMount() {
+  componentDidMount() {
     fetch('/tasks')
       .then(res => res.json())
       .then(tasks => this.setState({ tasks }));
@@ -22,17 +24,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       
-       <CustomNavbar></CustomNavbar>
-       <CustomSidebar items = {this.state.tasks} />
-       <Route exact path="/about" component={About} />
-        <ul>
-        <h1>Tasks</h1>
-        {this.state.tasks.map(task =>
-          <li>{task.title}</li>
-        )}
-        </ul>
-      </div>
+
+        <CustomNavbar></CustomNavbar>
+        <CustomSidebar items={this.state.tasks} />
+
+
+        <Row>
+          <Col sm={{ size: 'auto', offset: 1 }}>
+            <Route path="/task/:number" component={Task} />
+            <h1>Tasks</h1>
+            <ul>
+              {this.state.tasks.map(task =>
+                <li>{task.text}</li>
+              )}
+            </ul>
+          </Col>
+        </Row>
+     
+        
+      </div >
     );
   }
 }
