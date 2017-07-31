@@ -35,13 +35,13 @@ class CustomNavbar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink><Link to="/about">About</Link></NavLink>
+                <NavLink><Link to="/tasks">Tasks</Link></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/tasks/">Tareas</NavLink>
+                <NavLink href="/tasks/">Notes</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/calendar">Calendario</NavLink>
+                <NavLink href="/calendar">Calendar</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
