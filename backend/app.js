@@ -41,10 +41,10 @@ app.use('/users', users);
 app.use('/notes', notes);
 app.use('/tasks', tasks);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// Add headers
+app.use(function (req, res, next) {
 
-     // Website you wish to allow to connect
+    // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9080');
 
     // Request methods you wish to allow
@@ -59,6 +59,12 @@ app.use(function(req, res, next) {
 
     // Pass to next layer of middleware
     next();
+});
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+
+ 
 
   var err = new Error('Not Found');
   err.status = 404;
