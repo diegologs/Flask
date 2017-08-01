@@ -3,6 +3,13 @@ var router = express.Router();
 
 var Task = require('../models/task');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 // Método post para crear tareas
 router.post('/', function (req, res, next) {
     Task.create({
