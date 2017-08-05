@@ -6,7 +6,12 @@ import router from './router'
 import store from './store'
 
 import Navbar from './components/Navbar/Navbar.vue'
+import Task from './components/Task/Task.vue'
+import Sidebar from './components/Sidebar/Sidebar.vue'
+
 Vue.component('Navbar',Navbar)
+Vue.component('Task',Task)
+Vue.component('Sidebar',Sidebar)
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'

@@ -3,7 +3,17 @@
   
     <b-loading :active.sync="loading" :canCancel="false"></b-loading>
   
-   
+    
+     
+        <ul v-if="posts && posts.length">
+          <li v-for="post of posts">
+            <p>
+             <router-link :to="{ name: 'task.show', params: { id: post._id }}">{{post.title}}</router-link>
+            </p>
+           
+          </li>
+        </ul>
+      
   
   
    
