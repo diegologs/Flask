@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import Navbar from './components/Navbar/Navbar.vue'
+Vue.component('Navbar',Navbar)
+
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 
@@ -18,5 +21,6 @@ new Vue({
   components: { App },
   router,
   store,
+  Navbar,
   template: '<App/>'
 }).$mount('#app')
