@@ -1,0 +1,30 @@
+.sidebar_menu{
+   
+    padding: 5px;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.task_item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+a{
+    color: white;
+     text-align: center;
+}
+
+h3{
+    color: #b668ff;
+    font-weight: bold;
+}
+
+.task_toComplete{
+    text-align: center;
+}
+
+.completed_tasks{
+    text-align: center;
+}

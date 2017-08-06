@@ -20,6 +20,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 Vue.use(Buefy)
+Vue.use(require('vue-moment'));
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-  
+ 
+     <div class="main_page">
     <b-loading :active.sync="loading" :canCancel="false"></b-loading>
+ 
+      <b-icon pack="fa" icon="flask" size="is-large" type="is-primary">
+      </b-icon>
+      <br>
+      <h1 class="title">Select a task to view its details</h1>
+    </div>
   
-   
-  
-  
-   
-  </div>
+
 </template>
 
 
@@ -22,17 +24,18 @@ export default {
     loading: false
 
   }),
-  
+
 
   // Fetches posts when the component is created.
   created() {
-    var loading = true;
+    this.loading = true;
     axios.get(`http://flaskbackend.herokuapp.com/tasks`)
       .then(response => {
         // JSON responses are automatically parsed.
+        this.loading = false
         this.posts = response.data
         console.log(posts)
-        loading = false
+
 
       })
       .catch(e => {
@@ -50,3 +53,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .main_page{
+    margin-top: 15%;
+    text-align: center;
+    color: white;
+  }
+
+   .main_page h1{
+
+    text-align: center;
+    color: white !important;
+    font-style: italic;
+  }
+
+
+
+</style>

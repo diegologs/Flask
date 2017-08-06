@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar ">
+    <nav class="navbar is-transparent">
         <div class="navbar-brand">
     
-            <a class="navbar-item" href="/">
+            <a class="navbar-item logo" href="/">
                 <b-icon pack="fa" icon="flask">
                 </b-icon> Flask
             </a>
@@ -36,7 +36,7 @@
     </nav>
 </template>
 
-<style src="./style.css"></style>
+<style src="./style.scss"></style>
 
 <script>
 import axios from 'axios';
