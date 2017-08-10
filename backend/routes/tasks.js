@@ -87,8 +87,27 @@ router.put('/:task_id/completed', function (req, res, next) {
     Task.update({
         _id: req.params.task_id
     }, {
-        completed: !completed,
+        completed: true,
         complete_date: Date.now(),
+    }, function (err, affected, resp) {
+        Task.findOne({
+            _id: req.params.task_id
+        }, function (err, obj) {
+            res.json(obj);
+        });
+    })
+
+
+});
+
+//Método para marcar una tarea como completada
+router.put('/:task_id/uncompleted', function (req, res, next) {
+
+    Task.update({
+        _id: req.params.task_id
+    }, {
+        completed: false,
+        
     }, function (err, affected, resp) {
         Task.findOne({
             _id: req.params.task_id
