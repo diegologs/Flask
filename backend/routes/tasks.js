@@ -3,10 +3,10 @@ var router = express.Router();
 
 var Task = require('../models/task');
 
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+router.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 
@@ -47,7 +47,7 @@ router.get('/', function (req, res, next) {
 //Método get para listar una de las tareas
 router.get('/:task_id', function (req, res, next) {
     Task.findOne({
-       _id: req.params.task_id
+        _id: req.params.task_id
     }, function (err, obj) {
         res.json(obj);
     });
@@ -89,10 +89,10 @@ router.put('/:task_id/completed', function (req, res, next) {
         completed: true,
         complete_date: Date.now(),
     }, function (err, affected, resp) {
-        Task.find(function (err, tasks) {
-            if (err)
-                res.send(err)
-            res.json(tasks);
+        Task.findOne({
+            _id: req.params.task_id
+        }, function (err, obj) {
+            res.json(obj);
         });
     })
 
