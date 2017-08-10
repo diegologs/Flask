@@ -22,6 +22,24 @@ db.once('open', function() {
   // we're connected!
 });
 
+// middleware
+var handleCORS = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+
+
+app.use(function() {
+  app.use(express.bodyParser());
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: 'my super secret' }));
+  app.use(express.methodOverride());
+  app.use(handleCORS);
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
