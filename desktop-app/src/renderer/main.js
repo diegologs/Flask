@@ -9,12 +9,18 @@ import Navbar from './components/Navbar/Navbar.vue'
 import Task from './components/Task/Task.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 
-Vue.component('Navbar',Navbar)
-Vue.component('Task',Task)
-Vue.component('Sidebar',Sidebar)
+import VueMarkdown from 'vue-markdown'
+
+Vue.component('Navbar', Navbar)
+Vue.component('Task', Task)
+Vue.component('Sidebar', Sidebar)
+Vue.component('VueMarkdown', VueMarkdown)
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+
+import VueEvents from 'vue-events'
+Vue.use(VueEvents)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
@@ -24,9 +30,13 @@ Vue.use(require('vue-moment'));
 
 /* eslint-disable no-new */
 new Vue({
-  components: { App },
+  components: {
+    App
+  },
   router,
   store,
+  VueMarkdown,
   Navbar,
+
   template: '<App/>'
 }).$mount('#app')

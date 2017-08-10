@@ -4,8 +4,8 @@
     <b-loading :active.sync="loading" :canCancel="false"></b-loading>
   
     <h3 class="subtitle is-6">Tasks to complete</h3>
-     <hr>
-    
+    <hr>
+  
     <ul v-if="tasks && tasks.length" class="task_toComplete">
       <li v-for="task of tasks" class="task_item">
         <p v-if="!task.completed">
@@ -15,8 +15,8 @@
       </li>
     </ul>
     <br>
-      <h3 class="subtitle is-6">Completed tasks</h3>
-  <hr>
+    <h3 class="subtitle is-6">Completed tasks</h3>
+    <hr>
     <ul v-if="tasks && tasks.length" class="completed_tasks">
       <li v-for="task of tasks" class="task_item">
         <p v-if="task.completed">
@@ -42,6 +42,30 @@ export default {
 
   }),
 
+  mounted() {
+
+    this.$events.on('testEvent', eventData =>
+
+      axios.get(`http://flaskbackend.herokuapp.com/tasks`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.tasks = response.data
+
+         
+
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+
+
+
+
+    );
+
+
+  },
+
 
   // Fetches tasks when the component is created.
   created() {
@@ -50,7 +74,7 @@ export default {
       .then(response => {
         // JSON responses are automatically parsed.
         this.tasks = response.data
-        console.log(tasks)
+
         loading = false
 
       })

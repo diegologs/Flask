@@ -6,17 +6,20 @@
         <div v-if="task">
     
             <div class="columns is-gapless is-multiline">
-                <div class="column is-7">
+                <div class="column is-8">
                     <h1 class="title">{{task.title}}</h1>
                 </div>
                 <div class="column task_completed">
     
-                    <b-icon v-if="task.completed" pack="fa" icon="check-circle" size="is-large" type="is-success"></b-icon>
-                    <b-icon v-if="!task.completed" pack="fa" icon="check-circle" size="is-large">
-                    </b-icon>
+                   <a v-on:click="uncomplete"> <b-icon v-if="task.completed" pack="fa" icon="check-circle" size="is-large" type="is-success"></b-icon></a>
+                    <a v-on:click="complete">
+                        <b-icon v-if="!task.completed" pack="fa" icon="check-circle" size="is-large" type="is-primary">
+    
+                        </b-icon>
+                    </a>
                 </div>
-  
-                <div class="column is-7">
+    
+                <div class="column is-8">
                     <ul v-if="task.tags" class="tags">
                         <li v-for="tag of task.tags" class="tag">
     
@@ -34,7 +37,8 @@
             <hr>
             <p class="task_text">
     
-                {{task.text}}
+                <div v-html="task.text"></div>
+    
             </p>
     
         </div>
@@ -52,9 +56,64 @@ export default {
     data: () => ({
         task: {},
         errors: [],
+        counter: 0,
         loading: false
 
     }),
+    methods: {
+        complete: function (event) {
+
+            if (typeof this.$route.params.id !== "undefined") {
+                var task_id = this.$route.params.id;
+            } else {
+                task_id = 1;
+            }
+
+
+
+            axios.put(`http://flaskbackend.herokuapp.com/tasks/` + task_id + "/completed")
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.loading = false;
+                    this.task = response.data
+                    this.$events.emit('testEvent', "Hiiiiiiii");
+
+
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+
+        },
+
+        uncomplete: function (event) {
+
+            if (typeof this.$route.params.id !== "undefined") {
+                var task_id = this.$route.params.id;
+            } else {
+                task_id = 1;
+            }
+
+
+
+            axios.put(`http://flaskbackend.herokuapp.com/tasks/` + task_id + "/uncompleted")
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.loading = false;
+                    this.task = response.data
+                  this.$events.emit('testEvent', "Hiiiiiiii");
+
+
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+
+        }
+    },
+
+    
+
 
     // Fetches posts when the component is created.
     mounted() {

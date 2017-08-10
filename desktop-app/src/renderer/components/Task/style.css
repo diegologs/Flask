@@ -34,8 +34,10 @@ hr{
 .task_text{
     margin-top: 30px;
     padding-left: 5px;
+    color: white;
 }
 
 .task{
     margin-top: 20px;
 }
+

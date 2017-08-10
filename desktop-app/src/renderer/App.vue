@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <div class="columns">
       <div class="column is-3 sidebar">
-        <Sidebar></Sidebar>
+        <Sidebar v-on:refresh="refreshTasks()"></Sidebar>
       </div>
       <div class="column main_content">
   
