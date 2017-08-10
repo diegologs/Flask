@@ -87,7 +87,7 @@ router.put('/:task_id/completed', function (req, res, next) {
     Task.update({
         _id: req.params.task_id
     }, {
-        completed: true,
+        completed: !completed,
         complete_date: Date.now(),
     }, function (err, affected, resp) {
         Task.findOne({
