@@ -44,6 +44,17 @@ router.get('/', function (req, res, next) {
 
 });
 
+//Método get para listar una de las notas
+router.get('/:note_id', function (req, res, next) {
+    Note.findOne({
+        _id: req.params.note_id
+    }, function (err, obj) {
+        res.json(obj);
+    });
+
+});
+
+
 
 //Método delete para eliminar una nota mediante su id
 router.delete('/:note_id', function (req, res, next) {
