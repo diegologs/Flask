@@ -46,7 +46,7 @@
     </div>
 </template>
 
-<style scoped src="./style.css"></style>
+<style scoped src="./style.scss"></style>
 
 
 <script>

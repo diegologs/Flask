@@ -7,11 +7,13 @@ import store from './store'
 
 import Navbar from './components/Navbar/Navbar.vue'
 import Task from './components/Task/Task.vue'
+import Note from './components/Note/Note.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 
 import VueMarkdown from 'vue-markdown'
 
 Vue.component('Navbar', Navbar)
+Vue.component('Note', Note)
 Vue.component('Task', Task)
 Vue.component('Sidebar', Sidebar)
 Vue.component('VueMarkdown', VueMarkdown)
