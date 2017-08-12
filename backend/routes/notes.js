@@ -3,6 +3,14 @@ var router = express.Router();
 
 var Note = require('../models/note');
 
+router.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    next();
+});
+
+
 // Método post para crear notas
 router.post('/', function (req, res, next) {
     Note.create({
