@@ -1,9 +1,9 @@
 <template>
     <div class="note">
     
-        <b-loading :active.sync="loading" :canCancel="false"></b-loading>
+         <pulse-loader :loading="loading" color="#b668ff"></pulse-loader>
     
-        <div v-if="note">
+        <div v-if="note && !loading">
     
             <div class="columns is-gapless is-multiline">
                 

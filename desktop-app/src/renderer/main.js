@@ -10,6 +10,8 @@ import Task from './components/Task/Task.vue'
 import Note from './components/Note/Note.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 import VueMarkdown from 'vue-markdown'
 
 Vue.component('Navbar', Navbar)
@@ -17,6 +19,7 @@ Vue.component('Note', Note)
 Vue.component('Task', Task)
 Vue.component('Sidebar', Sidebar)
 Vue.component('VueMarkdown', VueMarkdown)
+Vue.component('PulseLoader', PulseLoader)
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
@@ -38,6 +41,7 @@ new Vue({
   router,
   store,
   VueMarkdown,
+  PulseLoader,
   Navbar,
 
   template: '<App/>'

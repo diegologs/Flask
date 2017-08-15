@@ -1,17 +1,44 @@
 <template>
     <div class="task">
     
-        <b-loading :active.sync="loading" :canCancel="false"></b-loading>
-    
-        <div v-if="task">
+        <pulse-loader :loading="loading" color="#b668ff"></pulse-loader>
+        <div v-if="task && !loading">
     
             <div class="columns is-gapless is-multiline">
                 <div class="column is-8">
-                    <h1 class="title">{{task.title}}</h1>
+                    <h1 class="title">{{task.title}} 
+                        <b-icon v-if="task.priority <= 1" pack="fa" icon="circle" type="is-primary">
+                        </b-icon>
+    
+                        <b-icon v-if="task.priority == 2" pack="fa" icon="circle" type="is-success">
+                        </b-icon>
+    
+                        <b-icon v-if="task.priority == 3" pack="fa" icon="circle" type="is-warning">
+                        </b-icon>
+    
+                        <b-icon v-if="task.priority > 4" pack="fa" icon="circle" type="is-danger">
+                        </b-icon>
+    
+                        <b-dropdown>
+                            <p class="" slot="trigger">
+                                <b-icon pack="fa" icon="bars" type="is-primary">
+                                </b-icon>
+                            </p>
+    
+                            <b-dropdown-option>Edit  <b-icon pack="fa" icon="pencil" type="is-primary">
+                                </b-icon></b-dropdown-option>
+                            <b-dropdown-option>Delete  <b-icon pack="fa" icon="trash" type="is-danger">
+                                </b-icon></b-dropdown-option>
+                           
+                        </b-dropdown>
+    
+                    </h1>
                 </div>
                 <div class="column task_completed">
     
-                   <a v-on:click="uncomplete"> <b-icon v-if="task.completed" pack="fa" icon="check-circle" size="is-large" type="is-success"></b-icon></a>
+                    <a v-on:click="uncomplete">
+                        <b-icon v-if="task.completed" pack="fa" icon="check-circle" size="is-large" type="is-success"></b-icon>
+                    </a>
                     <a v-on:click="complete">
                         <b-icon v-if="!task.completed" pack="fa" icon="check-circle" size="is-large" type="is-primary">
     
@@ -20,6 +47,7 @@
                 </div>
     
                 <div class="column is-8">
+    
                     <ul v-if="task.tags" class="tags">
                         <li v-for="tag of task.tags" class="tag">
     
@@ -27,6 +55,7 @@
     
                         </li>
                     </ul>
+    
                 </div>
     
                 <div class="column date">
@@ -77,6 +106,10 @@ export default {
                     this.loading = false;
                     this.task = response.data
                     this.$events.emit('testEvent', "Hiiiiiiii");
+                    this.$toast.open({
+                        message: 'Task marked as completed. Well done!',
+                        type: 'is-success'
+                    })
 
 
                 })
@@ -101,7 +134,7 @@ export default {
                     // JSON responses are automatically parsed.
                     this.loading = false;
                     this.task = response.data
-                  this.$events.emit('testEvent', "Hiiiiiiii");
+                    this.$events.emit('testEvent', "Hiiiiiiii");
 
 
                 })
@@ -112,7 +145,8 @@ export default {
         }
     },
 
-    
+
+
 
 
     // Fetches posts when the component is created.
