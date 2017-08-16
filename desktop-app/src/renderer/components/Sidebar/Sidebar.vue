@@ -20,7 +20,7 @@
               <b-icon v-if="task.priority == 3" pack="fa" icon="circle"  size="is-small" type="is-warning">
               </b-icon>
 
-              <b-icon v-if="task.priority > 4" pack="fa" icon="circle" size="is-small"  type="is-danger">
+              <b-icon v-if="task.priority >= 4" pack="fa" icon="circle" size="is-small"  type="is-danger">
               </b-icon>
             </p>
   

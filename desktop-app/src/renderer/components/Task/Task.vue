@@ -6,7 +6,7 @@
     
             <div class="columns is-gapless is-multiline">
                 <div class="column is-8">
-                    <h1 class="title">{{task.title}} 
+                    <h1 class="title">{{task.title}}
                         <b-icon v-if="task.priority <= 1" pack="fa" icon="circle" type="is-primary">
                         </b-icon>
     
@@ -25,11 +25,15 @@
                                 </b-icon>
                             </p>
     
-                            <b-dropdown-option>Edit  <b-icon pack="fa" icon="pencil" type="is-primary">
-                                </b-icon></b-dropdown-option>
-                            <b-dropdown-option>Delete  <b-icon pack="fa" icon="trash" type="is-danger">
-                                </b-icon></b-dropdown-option>
-                           
+                            <b-dropdown-option @click="isComponentModalActive = true">Edit
+                                <b-icon pack="fa" icon="pencil" type="is-primary">
+                                </b-icon>
+                            </b-dropdown-option>
+                            <b-dropdown-option v-on:click="trash">Delete
+                                <b-icon pack="fa" icon="trash" type="is-danger">
+                                </b-icon>
+                            </b-dropdown-option>
+    
                         </b-dropdown>
     
                     </h1>
@@ -66,6 +70,10 @@
             <hr>
             <p class="task_text">
     
+                <b-modal :active.sync="isComponentModalActive" has-modal-card>
+                    <modal-form v-bind="formProps"></modal-form>
+                </b-modal>
+    
                 <div v-html="task.text"></div>
     
             </p>
@@ -81,12 +89,21 @@
 <script>
 import axios from 'axios';
 
+
 export default {
     data: () => ({
         task: {},
         errors: [],
         counter: 0,
-        loading: false
+        loading: false,
+        isComponentModalActive: false,
+        formProps: {
+
+            title: '',
+            text: '',
+            tags: '',
+            priority: ''
+        }
 
     }),
     methods: {
@@ -142,7 +159,64 @@ export default {
                     this.errors.push(e)
                 })
 
+        },
+
+
+
+        trash: function (event) {
+
+            if (typeof this.$route.params.id !== "undefined") {
+                var task_id = this.$route.params.id;
+            } else {
+                task_id = 1;
+            }
+
+
+            this.$dialog.confirm({
+                title: 'Deleting task',
+                message: 'Are you sure you want to <strong>delete</strong> this task? This action cannot be undone.',
+                confirmText: 'Delete task',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                    axios.delete(`http://flaskbackend.herokuapp.com/tasks/` + task_id)
+                        .then(response => {
+                            // JSON responses are automatically parsed.
+                            this.loading = false;
+                            this.$events.emit('testEvent', "Hiiiiiiii");
+
+                            this.$toast.open({
+                                message: 'Task deleted',
+                                type: 'is-danger'
+                            });
+
+                            this.$router.push({ path: '/' });
+
+
+                        })
+                        .catch(e => {
+                            this.errors.push(e)
+                        })
+                }
+            })
+
+
+        },
+
+        edit: function (event) {
+
+            if (typeof this.$route.params.id !== "undefined") {
+                var task_id = this.$route.params.id;
+            } else {
+                task_id = 1;
+            }
+
+
+
+
         }
+
+
     },
 
 
@@ -163,13 +237,41 @@ export default {
             .then(response => {
                 // JSON responses are automatically parsed.
                 this.loading = false;
-                this.task = response.data
+                this.task = response.data;
+                this.formProps.title = this.task.title;
+                this.formProps.text = this.task.text;
+                this.formProps.tags = this.task.tags.toString();
+                this.formProps.priority = this.task.priority;
 
 
             })
             .catch(e => {
                 this.errors.push(e)
             })
+
+        this.$events.on('refreshTask', eventData =>
+
+
+            axios.get(`http://flaskbackend.herokuapp.com/tasks/` + task_id)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.loading = false;
+                    this.task = response.data;
+                    this.formProps.title = this.task.title;
+                    this.formProps.text = this.task.text;
+                    this.formProps.tags = this.task.tags.toString();
+                    this.formProps.priority = this.task.priority;
+
+
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+
+
+
+        );
+
 
         // async / await version (created() becomes async created())
         //

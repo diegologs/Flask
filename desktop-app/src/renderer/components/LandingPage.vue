@@ -1,13 +1,13 @@
 <template>
   <div class="main_page">
-    <pulse-loader :loading="loading" color="#b668ff"></pulse-loader>
+   
     <br>
     
-    <p v-if="!loading">
+    <p>
       <b-icon pack="fa" icon="flask" size="is-large" type="is-primary">
       </b-icon>
       <br>
-      <h1 v-if="!loading" class="title">Select a task to view its details</h1>
+      <h1 class="title">Select a task to view its details</h1>
     </p>
   
   </div>
@@ -22,7 +22,7 @@ export default {
   data: () => ({
     posts: [],
     errors: [],
-    loading: false
+    
 
   }),
 
