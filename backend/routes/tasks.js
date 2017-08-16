@@ -101,13 +101,34 @@ router.put('/:task_id/completed', function (req, res, next) {
 });
 
 //Método para marcar una tarea como completada
+router.put('/:task_id', function (req, res, next) {
+
+    Task.update({
+        _id: req.params.task_id
+    }, {
+        title: req.body.title,
+        tags: req.body.tags,
+        text: req.body.text,
+        priority: req.body.priority
+    }, function (err, affected, resp) {
+        Task.findOne({
+            _id: req.params.task_id
+        }, function (err, obj) {
+            res.json(obj);
+        });
+    })
+
+
+});
+
+//Método para marcar una tarea como completada
 router.put('/:task_id/uncompleted', function (req, res, next) {
 
     Task.update({
         _id: req.params.task_id
     }, {
         completed: false,
-        
+
     }, function (err, affected, resp) {
         Task.findOne({
             _id: req.params.task_id
