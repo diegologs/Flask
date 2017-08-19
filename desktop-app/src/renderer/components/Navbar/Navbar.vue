@@ -17,22 +17,43 @@
         <div id="navMenuExample" class="navbar-menu" v-bind:class="{ 'is-active' : showNav }">
     
             <div class="navbar-end">
-              <!--   <a class="navbar-item is-hidden-desktop-only" href="https://github.com/jgthms/bulma" target="_blank">
-                    <b-icon pack="fa" icon="tasks">
-                    </b-icon> Tasks
-                </a>
-                <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
-                    <b-icon pack="fa" icon="sticky-note">
-                    </b-icon> Notes
-                </a>
+                <!--   <a class="navbar-item is-hidden-desktop-only" href="https://github.com/jgthms/bulma" target="_blank">
+                            <b-icon pack="fa" icon="tasks">
+                            </b-icon> Tasks
+                        </a>
+                        <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
+                            <b-icon pack="fa" icon="sticky-note">
+                            </b-icon> Notes
+                        </a>
+            
+                        <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
+                            <b-icon pack="fa" icon="calendar">
+                            </b-icon> Calendar
+                        </a> -->
     
-                <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
-                    <b-icon pack="fa" icon="calendar">
-                    </b-icon> Calendar
-                </a> -->
+                <b-dropdown class="navbar-item is-hidden-desktop-only" custom paddingless position="is-bottom-left">
+                    <p class="" slot="trigger">
+                        <b-icon pack="fa" icon="plus-circle" size="is-large">
+                        </b-icon>
+                    </p>
+    
+                    <b-dropdown-option @click="isComponentModalActive = true">Create task
+                        <b-icon pack="fa" icon="tasks" type="is-primary">
+                        </b-icon>
+                    </b-dropdown-option>
+                    <b-dropdown-option>Create note
+                        <b-icon pack="fa" icon="sticky-note" type="is-primary">
+                        </b-icon>
+                    </b-dropdown-option>
+    
+                </b-dropdown>
     
             </div>
         </div>
+    
+        <b-modal :active.sync="isComponentModalActive" has-modal-card>
+            <CreateForm v-bind="formProps"></CreateForm>
+        </b-modal>
     </nav>
 </template>
 
@@ -45,7 +66,15 @@ export default {
     data: () => ({
         posts: [],
         showNav: false,
-        errors: []
+        errors: [],
+         isComponentModalActive: false,
+        formProps: {
+
+            title: 'aa',
+            text: 'bb',
+            tags: 'cc',
+            priority: '1'
+        }
     }),
 
     // Fetches posts when the component is created.

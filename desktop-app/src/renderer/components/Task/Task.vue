@@ -63,15 +63,16 @@
                 </div>
     
                 <div class="column date">
-                    <span v-if="task.complete_date">Completed {{ task.complete_date | moment("from") }}</span>
-                    <span v-if="!task.complete_date">Created {{ task.created | moment("from") }}</span>
+                    <span v-if="task.completed">Completed {{ task.complete_date | moment("from") }}</span>
+                    <span v-if="!task.completed">Created {{ task.created | moment("from") }}</span>
                 </div>
             </div>
             <hr>
             <p class="task_text">
     
                 <b-modal :active.sync="isComponentModalActive" has-modal-card>
-                    <modal-form v-bind="formProps"></modal-form>
+                  
+                     <EditForm v-bind="formProps"></EditForm>
                 </b-modal>
     
                 <div v-html="task.text"></div>

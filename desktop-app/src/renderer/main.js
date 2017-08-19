@@ -11,7 +11,8 @@ import Note from './components/Note/Note.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
-import ModalForm from './components/ModalForm'
+import EditForm from './components/Modals/EditForm.vue'
+import CreateForm from './components/Modals/CreateForm'
 
 import VueMarkdown from 'vue-markdown'
 
@@ -21,7 +22,8 @@ Vue.component('Task', Task)
 Vue.component('Sidebar', Sidebar)
 Vue.component('VueMarkdown', VueMarkdown)
 Vue.component('PulseLoader', PulseLoader)
-Vue.component('ModalForm', ModalForm)
+Vue.component('EditForm', EditForm)
+Vue.component('CreateForm', CreateForm)
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
@@ -44,7 +46,8 @@ new Vue({
   store,
   VueMarkdown,
   PulseLoader,
-  ModalForm,
+  EditForm,
+  CreateForm,
   Navbar,
 
   template: '<App/>'

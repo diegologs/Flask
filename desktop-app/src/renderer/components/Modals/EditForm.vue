@@ -2,36 +2,36 @@
     <form action="javascript:void(0);">
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Create / Edit task
+                <p class="modal-card-title">Edit task
                     <b-icon pack="fa" icon="pencil" type="is-primary">
                     </b-icon>
                 </p>
             </header>
             <section class="modal-card-body">
                 <b-field label="Title">
-                    <b-input type="text" v-model="newTitle" placeholder="Title" required>
+                    <b-input type="text" v-model="newTitle" :placeholder="title" required>
                     </b-input>
                 </b-field>
     
                 <b-field label="Title">
-                    <b-input type="textarea" v-model="newText" placeholder="Text" >
+                    <b-input type="textarea" v-model="newText" :placeholder="text" >
                     </b-input>
                 </b-field>
     
                 <b-field label="Tags">
-                    <b-input type="text" v-model="newTags" placeholder="Tags separated my commas" >
+                    <b-input type="text" v-model="newTags" :placeholder="tags" >
                     </b-input>
                 </b-field>
     
                 <b-field label="Priority">
-                    <b-input type="text" v-model="newPriority" placeholder="Priority" >
+                    <b-input type="text" v-model="newPriority" :placeholder="priority.toString()" >
                     </b-input>
                 </b-field>
     
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
-                <button v-on:click="edit" class="button is-success">Create / Edit</button>
+                <button v-on:click="edit" class="button is-success">Edit</button>
             </footer>
         </div>
     </form>
@@ -74,7 +74,7 @@ export default {
                     this.$events.emit('testEvent');
                      this.$events.emit('refreshTask');
                     this.$toast.open({
-                        message: 'Task marked as completed. Well done!',
+                        message: 'Task edited correctly',
                         type: 'is-success'
                     })
                     this.$parent.close()
