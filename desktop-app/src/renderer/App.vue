@@ -8,11 +8,13 @@
       <div class="column main_content">
   
         <router-view :key="$route.fullPath"></router-view>
- 
+  <small class="version">Version 0.5</small>
       </div>
     </div>
   
   </div>
+ 
+
 </template>
 
 <script>
@@ -42,6 +44,7 @@ export default {
   padding-right: 35px;
   padding-top: 15px;
   min-height: 100vh;
+  z-index: -10;
 }
 
 html {
@@ -50,6 +53,13 @@ html {
 
 body {
   height: 100% !important;
+}
+
+.version{
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  font-style: italic;
 }
 
 

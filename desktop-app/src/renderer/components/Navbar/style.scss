@@ -4,6 +4,7 @@
     margin-bottom: 10px;
     background-color: #434C5E !important;
     color: white !important; 
+    height: 10px;
 }
 
 nav .fa{
@@ -44,4 +45,26 @@ nav i:hover{
 
 .dropdown-menu i{
     padding-left: 30px;
+}
+
+.burger{
+    background-color: #b668ff !important;
+}
+
+.burger span{
+    background-color: white !important;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+
+}
+
+#navMenuExample{
+    background-color: #434C5E !important;
+    z-index: 100;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    
+}
+
+#navMenuExample a :hover {
+    color: white !important;
 }

@@ -53,11 +53,7 @@ export default {
 
 
 
-            if (typeof this.$route.params.id !== "undefined") {
-                var task_id = this.$route.params.id;
-            } else {
-                task_id = 1;
-            }
+            
 
 
             axios.post(`http://flaskbackend.herokuapp.com/tasks/`, {

@@ -16,7 +16,7 @@
                         <b-icon v-if="task.priority == 3" pack="fa" icon="circle" type="is-warning">
                         </b-icon>
     
-                        <b-icon v-if="task.priority > 4" pack="fa" icon="circle" type="is-danger">
+                        <b-icon v-if="task.priority >= 4" pack="fa" icon="circle" type="is-danger">
                         </b-icon>
     
                         <b-dropdown>
@@ -71,8 +71,8 @@
             <p class="task_text">
     
                 <b-modal :active.sync="isComponentModalActive" has-modal-card>
-                  
-                     <EditForm v-bind="formProps"></EditForm>
+    
+                    <EditForm v-bind="formProps"></EditForm>
                 </b-modal>
     
                 <div v-html="task.text"></div>
@@ -166,11 +166,9 @@ export default {
 
         trash: function (event) {
 
-            if (typeof this.$route.params.id !== "undefined") {
-                var task_id = this.$route.params.id;
-            } else {
-                task_id = 1;
-            }
+            var task_id;
+            typeof this.$route.params.id !== "undefined" ? task_id = this.$route.params.id : task_id = 1;
+
 
 
             this.$dialog.confirm({
