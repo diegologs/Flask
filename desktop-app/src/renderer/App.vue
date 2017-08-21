@@ -44,7 +44,7 @@ export default {
   padding-right: 35px;
   padding-top: 15px;
   min-height: 100vh;
-  z-index: -10;
+  
 }
 
 html {
@@ -62,5 +62,13 @@ body {
   font-style: italic;
 }
 
+h2{
+  font-size: 4em !important;
+  font-weight: bold !important;
+}
+
+h3{
+
+}
 
 </style>

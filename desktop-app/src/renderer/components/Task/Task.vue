@@ -68,16 +68,15 @@
                 </div>
             </div>
             <hr>
-            <p class="task_text">
-    
+          
                 <b-modal :active.sync="isComponentModalActive" has-modal-card>
     
                     <EditForm v-bind="formProps"></EditForm>
                 </b-modal>
     
-                <div v-html="task.text"></div>
+                <p class="task_text" style="color: white !important;" v-html="task.text"></p>
     
-            </p>
+      
     
         </div>
     

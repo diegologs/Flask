@@ -9,25 +9,25 @@
             </header>
             <section class="modal-card-body">
                 <b-field label="Title">
-                    <b-input type="text" v-model="newTitle" :placeholder="title" required>
+                    <b-input type="text" v-model="newTitle" required>
                     </b-input>
                 </b-field>
-    
+
                 <b-field label="Title">
-                    <b-input type="textarea" v-model="newText" :placeholder="text" >
+                    <b-input type="textarea" v-model="newText" :placeholder="text">
                     </b-input>
                 </b-field>
-    
+
                 <b-field label="Tags">
-                    <b-input type="text" v-model="newTags" :placeholder="tags" >
+                    <b-input type="text" v-model="newTags" :placeholder="tags">
                     </b-input>
                 </b-field>
-    
+
                 <b-field label="Priority">
-                    <b-input type="text" v-model="newPriority" :placeholder="priority.toString()" >
+                    <b-input type="text" v-model="newPriority" :placeholder="priority.toString()">
                     </b-input>
                 </b-field>
-    
+
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
@@ -43,18 +43,18 @@ import axios from 'axios';
 export default {
     props: ['title', 'text', 'tags', 'priority'],
     data: () => ({
-        newTitle: this.title,
-        newText: this.text,
-        newTags: this.tags,
-        newPriority: this.priority
+        newTitle: 'aaaaa',
+        newText: 'bbbbb',
+        newTags: 'ccccc',
+        newPriority: 'ddddd'
     }),
 
     methods: {
         edit: function (event) {
 
-            
 
-           var task_id;
+
+            var task_id;
             typeof this.$route.params.id !== "undefined" ? task_id = this.$route.params.id : task_id = 1;
 
 
@@ -69,7 +69,7 @@ export default {
 
 
                     this.$events.emit('testEvent');
-                     this.$events.emit('refreshTask');
+                    this.$events.emit('refreshTask');
                     this.$toast.open({
                         message: 'Task edited correctly',
                         type: 'is-success'
@@ -83,6 +83,15 @@ export default {
 
         },
     },
+
+    mounted() {
+
+        this.newTitle = this.title;
+        this.newText = this.text;
+        this.newTags = this.tags;
+        this.newPriority = this.priority;
+
+    }
 
 }
 </script>

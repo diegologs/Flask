@@ -1,4 +1,5 @@
 
+
 @import "~bulma/sass/utilities/_all";
 
 
@@ -24,17 +25,20 @@ $colors: (
     "twitter": ($twitter, $twitter-invert)
 );
 
-
+$grey-darker: white;
 $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 
-
+$title: #fff;
 
 
 
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+
+
 
