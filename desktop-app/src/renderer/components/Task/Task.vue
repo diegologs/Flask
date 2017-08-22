@@ -74,7 +74,7 @@
                     <EditForm v-bind="formProps"></EditForm>
                 </b-modal>
     
-                <p class="task_text" style="color: white !important;" v-html="task.text"></p>
+                <p id="task_text" style="color: white !important;" v-html="task.text"></p>
     
       
     
@@ -84,6 +84,27 @@
 </template>
 
 <style scoped src="./style.scss"></style>
+<style scoped>
+
+#task_text >>> h2{
+    color: white !important;
+    font-size: 2.5em !important;
+    font-weight: bold;
+}
+
+#task_text >>> h3{
+    color: white !important;
+    font-size: 2em !important;
+    font-weight: bold;
+}
+
+#task_text >>> h4{
+    color: white !important;
+    font-size: 1.5em !important;
+ 
+}
+
+</style>
 
 
 <script>

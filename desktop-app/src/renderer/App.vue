@@ -60,6 +60,8 @@ body {
   bottom: 10px;
   right: 20px;
   font-style: italic;
+  background-color: rgba(0,0,0,0.7);
+  padding: 5px;
 }
 
 h2{

@@ -13,8 +13,8 @@
                     </b-input>
                 </b-field>
 
-                <b-field label="Title">
-                    <b-input type="textarea" v-model="newText" :placeholder="text">
+                <b-field label="Text">
+                    <b-input type="textarea" v-model="newText" :placeholder="text" minlength="2" rows="20">
                     </b-input>
                 </b-field>
 
@@ -28,6 +28,9 @@
                     </b-input>
                 </b-field>
 
+                <b-field label="Preview:">
+                    <p id="text_preview" style="color: black !important;" v-html="newText.replace(/(?:\r\n|\r|\n)/g, '<br />')"></p>
+                </b-field>
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
@@ -60,7 +63,7 @@ export default {
 
             axios.put(`http://flaskbackend.herokuapp.com/tasks/` + task_id, {
                 title: this.newTitle,
-                text: this.newText,
+                text: this.newText.replace(/(?:\r\n|\r|\n)/g, '<br />'),
                 tags: this.newTags.split(),
                 priority: this.newPriority
             })
@@ -82,12 +85,14 @@ export default {
                 })
 
         },
+
+       
     },
 
     mounted() {
 
         this.newTitle = this.title;
-        this.newText = this.text;
+        this.newText = this.text.replace(/<br\s*\/?>/gi, ' \n ');
         this.newTags = this.tags;
         this.newPriority = this.priority;
 
@@ -99,5 +104,23 @@ export default {
 <style scoped>
 .modal-card {
     width: 640;
+}
+
+.text_preview {
+    color: #000 !important;
+}
+
+#text_preview>>>h2 {
+    font-size: 2.5em !important;
+    font-weight: bold;
+}
+
+#text_preview>>>h3 {
+    font-size: 2em !important;
+    font-weight: bold;
+}
+
+#text_preview>>>h4 {
+    font-size: 1.5em !important;
 }
 </style>
