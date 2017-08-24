@@ -104,6 +104,24 @@
  
 }
 
+#task_text >>> pre{
+    display: block;
+    background: #2E3440;
+    font-size: 1.2em;
+    border: 1px solid #b668ff;
+    color: white;
+   
+}
+
+#task_text >>> code{
+    padding-top: -30px;
+    background: transparent;
+   
+  
+}
+
+
+
 </style>
 
 
