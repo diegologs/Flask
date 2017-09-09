@@ -1,5 +1,5 @@
 <template>
-    <form action="javascript:void(0);">
+    <form action="javascript:void(0);" title="Create task">
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">Create task
